@@ -1,9 +1,9 @@
 const axios = require('axios');
 
-// Base URL da API externa
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
-// Base URL para arquivos estáticos (imagens)
-const API_STATIC_URL = process.env.NEXT_PUBLIC_API_STATIC || '';
+// Base URL da API externa (usa NEXT_PUBLIC_API_BASE_URL ou API_BASE_URL)
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL || '';
+// Base URL para arquivos estáticos (imagens) (usa NEXT_PUBLIC_API_STATIC ou API_STATIC_URL)
+const API_STATIC_URL = process.env.NEXT_PUBLIC_API_STATIC || process.env.API_STATIC_URL || '';
 
 /**
  * Formata uma data para exibição
