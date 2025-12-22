@@ -6,6 +6,8 @@ npm-debug.log
 .git
 .gitignore
 README.md
+DEPLOY.md
+.dockerignore
 .DS_Store
 *.log
 .vscode
@@ -13,4 +15,4 @@ README.md
 *.swp
 *.swo
 *~
-
+easypanel.yml
