@@ -2,6 +2,13 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: '.env.local' });
 }
+
+console.log('🔧 Iniciando servidor...');
+console.log('📦 NODE_ENV:', process.env.NODE_ENV || 'development');
+console.log('🌐 PORT:', process.env.PORT || 3000);
+console.log('🔗 API_BASE_URL:', process.env.NEXT_PUBLIC_API_BASE_URL || process.env.API_BASE_URL || 'não configurada');
+console.log('🖼️  API_STATIC_URL:', process.env.NEXT_PUBLIC_API_STATIC || process.env.API_STATIC_URL || 'não configurada');
+
 const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
@@ -250,14 +257,42 @@ app.use((req, res) => {
   `);
 });
 
+// Rota de health check simples (antes de outras rotas para garantir que funciona)
+app.get('/health', (req, res) => {
+  try {
+    res.status(200).json({ 
+      status: 'ok', 
+      timestamp: new Date().toISOString(),
+      port: PORT,
+      nodeEnv: process.env.NODE_ENV
+    });
+  } catch (error) {
+    console.error('Erro no health check:', error);
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
 // Iniciar servidor
-app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor rodando em http://0.0.0.0:${PORT}`);
   console.log(`📄 Página principal: http://0.0.0.0:${PORT}/`);
   console.log(`🇧🇷 Versão PT-BR: http://0.0.0.0:${PORT}/pt-br`);
   console.log(`🌍 Acessível externamente na porta ${PORT}`);
+  console.log(`💚 Health check disponível em http://0.0.0.0:${PORT}/health`);
 }).on('error', (err) => {
   console.error('❌ Erro ao iniciar servidor:', err);
   process.exit(1);
+});
+
+// Tratamento de erros não capturados
+process.on('uncaughtException', (err) => {
+  console.error('❌ Erro não capturado:', err);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ Promise rejeitada não tratada:', reason);
 });
 
