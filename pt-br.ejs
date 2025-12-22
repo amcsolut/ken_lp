@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="icon" type="image/svg" sizes="32x32" href="assets/img/favicon.svg">
+  <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KEN - Kingdom Enterprise Network</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Magnific Popup CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/lp-styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+  <script src="/dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
+  <script src="/dmxAppConnect/dmxVideo/dmxVideo.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxLightbox/dmxLightbox.css" />
+  <script src="/dmxAppConnect/dmxLightbox/dmxLightbox.js" defer></script>
+</head>
+
+<body is="dmx-app" id="Layout_Site">
+  <div is="dmx-browser" id="browser"></div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
+    <div class="container-fluid px-5">
+      <a class="navbar-brand fw-bold" href="#home">
+        <img src="/assets/img/logo/logo01.png" alt="KEN Logo" height="60" class="me-2">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#quem-somos">QUEM SOMOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pilares">PILARES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#fundamentos">FUNDAMENTOS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#fundadores">FUNDADORES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#comunidade">COMUNIDADE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#igrejas">IGREJAS AFILIADAS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#eventos">EVENTOS</a>
+          </li>
+        </ul>
+
+
+        <div class="d-flex gap-3 align-items-center">
+          <!-- Container do dropdown -->
+          <div class="dropdown">
+            <!-- Toggler (seu h5 com o ícone) -->
+            <h5 class="mt-2 mb-0 text-warning-emphasis" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
+              <i class="fa-solid fa-globe"></i>
+            </h5>
+
+            <!-- Menu -->
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" type="button" href="/">
+                  <img src="/assets/img/es.png" alt="USA" width="24" height="24">
+                  <span> Inglês</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" type="button" href="/pt-br">
+                  <img src="/assets/img/br.png" alt="BRASIL" width="24" height="24">
+                  <span> Português</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <a href="http://community.kenb2b.com/" class="btn btn-gold btn-sm">ACESSAR COMUNIDADE</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main is="dmx-view" id="content">
+
+
+<dmx-serverconnect id="sc_eventos" url="/api/eventos/listar_eventos_ativos"></dmx-serverconnect>
+<meta name="ac:route" content="/pt-br">
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+    <div class="hero-video-bg">
+        <video autoplay muted loop>
+            <source src="/assets/img/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="hero-title mb-4" data-aos="fade-up">
+                    Bem-Vindo</br>
+                    <span class="typing-text" id="typing"></span>
+                </h1>
+                <p class="hero-subtitle mb-5 lh-1" data-aos="fade-up" data-aos-delay="200">
+                    Uma rede empresarial inspirada e movida pelo Reino de Deus que trabalha para lançar e equipar empreendedores de alto impacto.
+                </p>
+
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <p class="mb-2 text-gold fw-semibold">Sua primeira vez no KEN?</p>
+                    <a href="https://player-vz-401f6a6e-874.tv.pandavideo.com.br/embed/?v=c8689060-f948-489d-a726-ebfa9080358c" class="btn btn-play popup-video" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                        <i class="fas fa-play me-2"></i>
+                        Assista ao Vídeo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quem Somos -->
+<section id="quem-somos" class="section-padding bg-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h2 class="section-title mb-5" data-aos="fade-up">Quem Somos</h2>
+                <p class="section-text" data-aos="fade-up" data-aos-delay="200">
+                    KEN é uma rede internacional de empreendedores, empresas e igrejas que buscam em primeiro lugar o Reino de Deus e exerceremos com unção e autoridade o papel de catalisadores de transformação na sociedade.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="fmosaico d-flex gap-3">
+    <img src="/assets/img/mosaico.png" alt="" class="img-fluid">
+    <img src="/assets/img/mosaico.png" alt="" class="img-fluid">
+    <img src="/assets/img/mosaico.png" alt="" class="img-fluid">
+</section>
+
+
+<!-- Pilares -->
+<section id="pilares" class="section-padding bg-gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title text-white" data-aos="fade-up">Nossos Pilares</h2>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Relacionamentos</h4>
+                    <p>Significa sair da solidão e pertencer a uma comunidade empresarial pautada no compromisso mútuo, na mordomia cristã e na construção de relacionamentos duradouros.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Mentoria</h4>
+                    <p>Baseia-se em uma cultura de discipulado e uma visão de legado geracional do Reino de Deus, promovendo um ambiente de Life Long Learning (aprendizagem contínua).</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Paixão</h4>
+                    <p>É o resgate da paixão e da identidade celestial como parte do chamado na terra e promover uma plataforma que permita com que as pessoas com paixões semelhantes se conectem e potencializem seu impacto juntas.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h4>Transformação</h4>
+                    <p>Mobilizar a integração de capital (humano, intelectual, espiritual e financeiro) em projetos transformacionais que espelham a cultura dos céus.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="pilar-card">
+                    <div class="pilar-icon">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <h4>Igreja</h4>
+                    <p>Assistir a Igreja local como a protagonista do discipulado empresarial e promotora do empreendedorismo com propósito, aumentando a influência e o impacto do Reino na sua cidade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fundamentos -->
+<section id="fundamentos" class="section-padding bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Fundamentos</h2>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">01</div>
+                    <p>Você não traz Deus para o seu negócio. </br>Ele traz você para o Negócio Dele.</p>
+                    <img src="/assets/img/fudam_01.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">02</div>
+                    <p>Você não alcança as pessoas com sua mensagem, Você as alcança com sua vida</p>
+                    <img src="/assets/img/fudam_02.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">03</div>
+                    <p>Você não levanta recursos apenas para o ministério da igreja, Deus lhe dá riqueza para construir o Seu Reino (que inclui o ministério da igreja) e amplia a visão da igreja!</p>
+                    <img src="/assets/img/fudam_03.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">04</div>
+                    <p>Não estamos construindo negócios para nosso sustento, mas para ser a solução de Deus para nossa geração.</p>
+                    <img src="/assets/img/fudam_04.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">05</div>
+                    <p>Estamos construindo para deixar mais do que uma herança para nossos filhos, mas para construir empreendimentos e um legado para as próximas gerações.</p>
+                    <img src="/assets/img/fudam_05.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">06</div>
+                    <p>Estamos criando uma base de princípios, ferramentas, ideias para outros seguirem e construírem.</p>
+                    <img src="/assets/img/fudam_06.png">
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="700">
+                <div class="fundamento-card">
+                    <div class="fundamento-number">07</div>
+                    <p>Construir primeiro para abençoar depois.</p>
+                    <img src="/assets/img/fudam_07.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fundadores -->
+<section id="fundadores" class="section-padding bg-gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title text-white" data-aos="fade-up">Fundadores</h2>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="/assets/img/thomas_site.png" alt="Thomas Walker" class="img-fluid">
+                    </div>
+                    <div class="founder-content">
+                        <span class="founder-role">Founder of KEN</span>
+                        <h4 class="founder-name">Thomas Walker</h4>
+                        <p class="founder-bio">
+                            Thomas é Presidente e CEO da Action Corporations. Em 2007, fundou uma startup em Nova York que, ao longo dos anos, evoluiu para um grupo de gestão de varejo multimilionário, consolidado como a Action Corporations.
+                            <br><br>
+                            Com uma habilidade única para inspirar e motivar empreendedores, Thomas os encoraja a alinhar cada aspecto de seus negócios aos princípios do Reino de Deus.
+                        </p>
+                        <div class="founder-social">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="/assets/img/arnaldo_site.png" alt="Arnaldo Marion" class="img-fluid">
+                    </div>
+                    <div class="founder-content">
+                        <span class="founder-role">Founder of KEN</span>
+                        <h4 class="founder-name">Arnaldo Marion</h4>
+                        <p class="founder-bio">
+                            Arnaldo é um estrategista de negócios e finanças, além de professor, palestrante e autor.
+                            <br><br>
+                            Atuando como CFO da Action Corporations, ele lidera a gestão de diversas empresas no Brasil e nos EUA. Sua missão é inspirar e capacitar pessoas para estabelecer uma cultura transformadora nos negócios, alinhada aos princípios dos céus.
+                        </p>
+                        <div class="founder-social">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Comunidade -->
+<section id="comunidade" class="section-padding bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Comunidade Internacional</h2>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="community-benefits">
+                    <h4 class="mb-4">Benefícios</h4>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Entra em um ambiente de mentoria e troca de experiências e oportunidades estratégicas.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Se conecta com projetos transformacionais no mundo.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Encontra uma rede de oração.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Passa a caminhar com líderes e empreendedores que desejam através dos negócios do Reino transformar cultura.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="community-access">
+                    <h4 class="mb-4">Acesso</h4>
+                    <p class="mb-4">Cursos, Lives, Agenda KEN, Descontos, Novos Parceiros, Sala de Oração, Capelania, Fóruns Temáticos e muito mais...</p>
+                    <a href="/cadastro" class="btn btn-gold btn-lg btn-sm">
+                        <i class="fas fa-users me-2"></i>
+                        Conecte-se
+                    </a>
+                </div>
+            </div>
+            <div class="fconect" data-aos="fade-up" data-aos-delay="100">
+                <img src="/assets/img/conexao.png" alt="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Igrejas Afiliadas -->
+<section id="igrejas" class="section-padding bg-gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title text-white" data-aos="fade-up">Igrejas Afiliadas</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="igreja-content text-center" data-aos="fade-up" data-aos-delay="100">
+                    <p class="section-text text-white mb-4">
+                        Ser uma Igreja Afiliada do KEN vai muito além de receber conteúdos: é um compromisso conjunto de transformação, impacto e avanço do Reino de Deus em sua cidade.
+                    </p>
+                    <p class="section-text text-white mb-4">
+                        Acreditamos que a Igreja local tem um papel essencial no discipulado e na ativação de comunidades empresariais, formando agentes de transformação com autoridade espiritual. Juntos, podemos integrar os valores do Reino às práticas empresariais, gerando impacto espiritual, econômico, social e cultural.
+                    </p>
+                    <p class="section-text text-white mb-5">
+                        Nosso programa apoia sua igreja na construção de uma comunidade empresarial conectada, frutífera e inspirada. E por entendermos que cada igreja tem sua própria realidade, oferecemos um modelo flexível, adaptável às suas necessidades.
+                    </p>
+                    <a href="https://community.kenb2b.com/" class="btn btn-gold btn-sm">
+                        <i class="fas fa-church me-2"></i>
+                        Faça Parte
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Eventos -->
+<section id="eventos" class="section-padding bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="section-title" data-aos="fade-up">Eventos</h2>
+            </div>
+        </div>
+
+        <div class="row mb-4" is="dmx-repeat" id="repeat_eventos" dmx-bind:repeat="sc_eventos.data.query_conferencias" key="id">
+
+            <div class="col-lg-12 mb-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="event-card">
+                    <div class="row">
+                        <div class="col-12 col-lg-7 col-md-12">
+                            <img dmx-bind:src="banner" class="img-fluid">
+                        </div>
+                        <div class="event-content col-12 col-lg-5 col-md-12">
+                            <h5 class="text-start">{{titulo}}</h5>
+                            <p class="event-date text-start"><i class="fas fa-calendar-alt me-2"></i>{{data_evento}}</p>
+                            <p class="text-start">{{descricao}}</p>
+                            <p class="event-date text-start">{{local}}</p>
+                            <a class="text-start btn btn-gold-outline cursor-pointer" dmx-bind:href="link" target="_blank">Go to hotsite</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- INICIO EVENTOS -->
+        <div class="row g-4" is="dmx-repeat" id="repeat_eventos" dmx-bind:repeat="sc_eventos.data.query_eventos" key="id">
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img alt="Evento 1" class="img-fluid" dmx-bind:src="banner">
+                        <span class="event-badge">{{tipo}}</span>
+                    </div>
+                    <div class="event-content">
+                        <h5>{{titulo}}</h5>
+                        <p class="event-date"><i class="fas fa-calendar-alt me-2"></i>{{data_evento}}</p>
+                        <a dmx-on:click="browser.goto('/evento?evento_id='+token)" class="btn btn-gold-outline cursor-pointer">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIM EVENTOS -->
+    </div>
+</section>
+
+
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="footer-logo mb-3">
+            <img src="/assets/img/logo/logo01.png" alt="KEN Logo" height="60" class="me-3">
+          </div>
+          <p class="footer-copyright">COPYRIGHT © 2025 - Todos os direitos Reservados | KEN - Kingdom Enterprise Network</p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <div class="footer-social">
+            <a href="#" class="social-link ms-2"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link ms-2"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link ms-2"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link ms-2"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- jQuery (deve vir primeiro) -->
+
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Typed.js (CDN alternativo) -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- Magnific Popup JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="assets/js/lpes-script.js"></script>
+
+  <!-- Fallback para bibliotecas que não carregaram -->
+  <script>
+    // Fallback se jQuery não carregou
+        if (typeof jQuery === 'undefined') {
+            console.warn('jQuery não carregou, carregando versão de fallback...');
+            document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"><\/script>');
+        }
+        
+        // Verificar se as bibliotecas carregaram após um delay
+        setTimeout(function() {
+            // Fallback para Typed.js
+            if (typeof Typed === 'undefined') {
+                console.warn('Typed.js não carregou, aplicando fallback...');
+                const typingElement = document.getElementById('typing');
+                if (typingElement) {
+                    typingElement.textContent = 'KEN';
+                    typingElement.style.color = '#a98f75';
+                }
+            }
+            
+            // Fallback para AOS
+            if (typeof AOS === 'undefined') {
+                console.warn('AOS não carregou, removendo atributos data-aos...');
+                const aosElements = document.querySelectorAll('[data-aos]');
+                aosElements.forEach(function(el) {
+                    el.removeAttribute('data-aos');
+                    el.removeAttribute('data-aos-delay');
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
+        }, 2000);
+        
+        // Fallback básico para smooth scroll sem jQuery
+        if (typeof jQuery === 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+                const links = document.querySelectorAll('a[href^="#"]');
+                links.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+            });
+        }
+  </script>

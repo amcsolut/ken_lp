@@ -1,0 +1,210 @@
+            @-webkit-keyframes checkmark {
+                0% {
+                    stroke-dashoffset: 100;
+                    opacity: 0;
+                    -webkit-transform: scale(0.8);
+                            transform: scale(0.8);
+                }
+
+                60% {
+                    stroke-dashoffset: 0;
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                            transform: scale(1);
+                }
+
+                80% {
+                    -webkit-transform: scale(1.2);
+                            transform: scale(1.2);
+                }
+
+                100% {
+                    -webkit-transform: scale(1);
+                            transform: scale(1);
+                    opacity: 1;
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            @keyframes checkmark {
+                0% {
+                    stroke-dashoffset: 100;
+                    opacity: 0;
+                    -webkit-transform: scale(0.8);
+                            transform: scale(0.8);
+                }
+
+                60% {
+                    stroke-dashoffset: 0;
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                            transform: scale(1);
+                }
+
+                80% {
+                    -webkit-transform: scale(1.2);
+                            transform: scale(1.2);
+                }
+
+                100% {
+                    -webkit-transform: scale(1);
+                            transform: scale(1);
+                    opacity: 1;
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            @-webkit-keyframes circle-fill {
+                0% {
+                    -webkit-transform: scale(0);
+                            transform: scale(0);
+                    opacity: 0;
+                }
+
+                40% {
+                    -webkit-transform: scale(0.8);
+                            transform: scale(0.8);
+                    opacity: 0.8;
+                }
+
+                100% {
+                    -webkit-transform: scale(1);
+                            transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes circle-fill {
+                0% {
+                    -webkit-transform: scale(0);
+                            transform: scale(0);
+                    opacity: 0;
+                }
+
+                40% {
+                    -webkit-transform: scale(0.8);
+                            transform: scale(0.8);
+                    opacity: 0.8;
+                }
+
+                100% {
+                    -webkit-transform: scale(1);
+                            transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+                min-height: 100vh;
+                background-color: #242b48;
+            }
+
+            .success-container {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: column;
+                        flex-direction: column;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+                text-align: center;
+                max-width: 1080px;
+                padding: 100px 50px;
+                background-color: #242b48;
+                border-radius: 12px;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+                width: 250px;
+                height: auto;
+            }
+
+            .checkmark-circle {
+                width: 100px;
+                height: 100px;
+                position: relative;
+                margin: 20px auto;
+            }
+
+            .checkmark-circle .background {
+                fill: #2ecc71;
+                -webkit-animation: circle-fill 0.6s ease-in-out forwards;
+                        animation: circle-fill 0.6s ease-in-out forwards;
+            }
+
+            .checkmark-circle .checkmark {
+                stroke-width: 4;
+                stroke: #fff;
+                stroke-miterlimit: 10;
+                stroke-dasharray: 100;
+                stroke-dashoffset: 100;
+                -webkit-animation: checkmark 1s ease-in-out 0.3s forwards;
+                        animation: checkmark 1s ease-in-out 0.3s forwards;
+                fill: none;
+                opacity: 1;
+            }
+
+            h2 {
+                color: #a98f75;
+                font-size: 2.5rem;
+                margin: 20px 0;
+            }
+
+            .success-message {
+                color: #fff;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+
+            .login-btn {
+                display: inline-block;
+                padding: 14px 32px;
+                background-color: #a98f75;
+                color: #fff;
+                font-weight: 600;
+                text-transform: uppercase;
+                text-decoration: none;
+                letter-spacing: 1px;
+                border-radius: 6px;
+                -webkit-transition: background-color 0.3s, -webkit-transform 0.2s;
+                transition: background-color 0.3s, -webkit-transform 0.2s;
+                transition: background-color 0.3s, transform 0.2s;
+                transition: background-color 0.3s, transform 0.2s, -webkit-transform 0.2s;
+                border: none;
+                cursor: pointer;
+            }
+
+            .login-btn:hover {
+                background-color: #2980b9;
+                -webkit-transform: translateY(-2px);
+                        transform: translateY(-2px);
+            }
+
+            .login-btn:active {
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+            }

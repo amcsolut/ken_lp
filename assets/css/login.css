@@ -1,0 +1,292 @@
+:root {
+    --primary-principal: #a98f75;
+    --primary-secundario: #ddd6c7;
+    --primary-terceiro: #3d3c3c;
+    --primary-modal: #242b48;
+}
+
+p{
+    color: var(--primary-principal);
+}
+
+
+body {
+    background-image: url('/assets/img/bg_login.png') ;
+    background-size: cover;
+    background-position: center;
+}
+
+
+a {
+    color: var(--primary-principal);
+    text-decoration: none;
+    -webkit-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #86847D;
+    text-decoration: underline;
+}
+
+/* Para links dentro de elementos com fundo escuro */
+.bg-dark a {
+    color: var(--primary-principal);
+}
+
+.bg-dark a:hover {
+    color: #86847D;
+}
+
+/* Para links que precisam se parecer com botões */
+.link-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--primary-principal);
+    color: white;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.link-button:hover {
+    background-color: #86847D;
+    color: white;
+    text-decoration: none;
+}
+
+.form-column {
+    background-color: rgba(36, 43, 72, 0.7); /* #ddd6c7 com opacidade */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 2rem;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: 1px solid #86847D;
+    padding: 0.75rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-principal);
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(186, 150, 125, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(186, 150, 125, 0.25);
+}
+
+.form-label {
+    color: #86847D;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-principal);
+    border-color: var(--primary-principal);
+    padding: 0.75rem;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #86847D;
+    border-color: #86847D;
+}
+
+.image-column {
+    min-height: 100vh;
+    background-image: url('/assets/img/bg_login.png');
+    background-size: cover;
+    background-position: right;
+    
+}
+
+
+.image-igrejas {
+    min-height: 100vh;
+    background-image: url('/assets/img/bg_afiliadas.png');
+    background-size: cover;
+    background-position: center;
+    
+}
+
+@media (max-width: 767.98px) {
+    .image-column {
+        display: none;
+    }
+
+    .image-igrejas {
+        display: none;
+    }
+    
+    
+    .form-column {
+        min-height: 100vh;
+    }
+}
+
+/* PLANOS */
+
+.pl-container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+}     
+        .pl-card {
+            -webkit-box-flex: 1;
+                -ms-flex: 1;
+                    flex: 1;
+            min-width: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            -webkit-transition: -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+            transition: -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+            background-color: #fff;
+        }
+        
+        .pl-card:hover {
+            -webkit-transform: translateY(-5px);
+                    transform: translateY(-5px);
+            -webkit-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pl-card-header {
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .pl-card-basic .pl-card-header {
+            background-color: #3498db;
+        }
+        
+        .pl-card-premium .pl-card-header {
+            background-color: #9b59b6;
+        }
+        
+        .pl-card-premium-annual .pl-card-header {
+            background-color: #2c3e50;
+        }
+        
+        .pl-headline {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .pl-price {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        
+        .pl-card-body {
+            padding: 20px;
+        }
+        
+        .pl-features {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .pl-feature {
+            padding: 8px 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .pl-feature:last-child {
+            border-bottom: none;
+        }
+        
+        .pl-feature:before {
+            content: "✓";
+            color: #2ecc71;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .pl-card-footer {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .pl-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            cursor: pointer;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+        }
+        
+        .pl-btn-basic {
+            background-color: #3498db;
+        }
+        
+        .pl-btn-basic:hover {
+            background-color: #2980b9;
+        }
+        
+        .pl-btn-premium {
+            background-color: #9b59b6;
+        }
+        
+        .pl-btn-premium:hover {
+            background-color: #8e44ad;
+        }
+        
+        .pl-btn-premium-annual {
+            background-color: #2c3e50;
+        }
+        
+        .pl-btn-premium-annual:hover {
+            background-color: #1a252f;
+        }
+        
+        .pl-feature-highlight {
+            font-weight: 700;
+            color: #333;
+        }

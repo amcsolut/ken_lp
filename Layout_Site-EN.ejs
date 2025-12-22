@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="icon" type="image/svg" sizes="32x32" href="assets/img/favicon.svg">
+  <script src="/dmxAppConnect/dmxAppConnect.js"></script>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KEN - Kingdom Enterprise Network</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Magnific Popup CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/lp-styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="/dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+  <script src="/dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
+  <script src="/dmxAppConnect/dmxVideo/dmxVideo.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
+  <link rel="stylesheet" href="/dmxAppConnect/dmxLightbox/dmxLightbox.css" />
+  <script src="/dmxAppConnect/dmxLightbox/dmxLightbox.js" defer></script>
+</head>
+
+<body is="dmx-app" id="Layout_Site">
+  <div is="dmx-browser" id="browser"></div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
+    <div class="container-fluid px-5">
+      <a class="navbar-brand fw-bold" href="#home">
+        <img src="/assets/img/logo/logo01.png" alt="KEN Logo" height="60" class="me-2">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#quem-somos">WHO WE ARE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pilares">PILLARS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#fundamentos">FUNDAMENTALS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#fundadores">FOUNDERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#comunidade">COMMUNITY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#igrejas">AFFILIATED CHURCHES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#eventos">EVENTS</a>
+          </li>
+        </ul>
+
+
+        <div class="d-flex gap-3 align-items-center">
+          <!-- Container do dropdown -->
+          <div class="dropdown">
+            <!-- Toggler (seu h5 com o ícone) -->
+            <h5 class="mt-2 mb-0 text-warning-emphasis" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
+              <i class="fa-solid fa-globe"></i>
+            </h5>
+
+            <!-- Menu -->
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" type="button" href="/">
+                  <img src="/assets/img/es.png" alt="USA" width="24" height="24">
+                  <span> ENGLISH</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" type="button" href="/pt-br">
+                  <img src="/assets/img/br.png" alt="BRASIL" width="24" height="24">
+                  <span> PORTUGUESE</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <a href="http://community.kenb2b.com/" class="btn btn-gold btn-sm">ACCESS COMMUNITY</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main is="dmx-view" id="content">
+    <%- typeof content !== 'undefined' ? content : '' %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="footer-logo mb-3">
+            <img src="/assets/img/logo/logo01.png" alt="KEN Logo" height="60" class="me-3">
+          </div>
+          <p class="footer-copyright">COPYRIGHT © 2025 - All Rights Reserved | KEN - Kingdom Enterprise Network</p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <div class="footer-social">
+            <a href="#" class="social-link ms-2"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-link ms-2"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-link ms-2"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link ms-2"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- jQuery (deve vir primeiro) -->
+
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Typed.js (CDN alternativo) -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- Magnific Popup JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="assets/js/lpes-script.js"></script>
+
+  <!-- Fallback para bibliotecas que não carregaram -->
+  <script>
+    // Fallback se jQuery não carregou
+        if (typeof jQuery === 'undefined') {
+            console.warn('jQuery não carregou, carregando versão de fallback...');
+            document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"><\/script>');
+        }
+        
+        // Verificar se as bibliotecas carregaram após um delay
+        setTimeout(function() {
+            // Fallback para Typed.js
+            if (typeof Typed === 'undefined') {
+                console.warn('Typed.js não carregou, aplicando fallback...');
+                const typingElement = document.getElementById('typing');
+                if (typingElement) {
+                    typingElement.textContent = 'KEN';
+                    typingElement.style.color = '#a98f75';
+                }
+            }
+            
+            // Fallback para AOS
+            if (typeof AOS === 'undefined') {
+                console.warn('AOS não carregou, removendo atributos data-aos...');
+                const aosElements = document.querySelectorAll('[data-aos]');
+                aosElements.forEach(function(el) {
+                    el.removeAttribute('data-aos');
+                    el.removeAttribute('data-aos-delay');
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
+        }, 2000);
+        
+        // Fallback básico para smooth scroll sem jQuery
+        if (typeof jQuery === 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+                const links = document.querySelectorAll('a[href^="#"]');
+                links.forEach(function(link) {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+            });
+        }
+  </script>
+</body>
