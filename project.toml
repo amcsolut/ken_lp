@@ -1,6 +1,0 @@
-# Este arquivo força o uso de Dockerfile ao invés de buildpacks
-# Se o Easypanel ainda tentar usar buildpacks, configure manualmente no painel
-
-[build]
-  builder = "docker"
-
