@@ -41,7 +41,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
     <div class="container-fluid px-5">
-      <a class="navbar-brand fw-bold" href="#home">
+      <a class="navbar-brand fw-bold" href="/">
         <img src="/assets/img/logo/logo01.png" alt="KEN Logo" height="60" class="me-2">
       </a>
 
@@ -108,8 +108,7 @@
   <main is="dmx-view" id="content">
 
 
-<dmx-serverconnect id="sc_eventos" url="/api/eventos/listar_eventos_ativos"></dmx-serverconnect>
-<meta name="ac:route" content="/pt-br">
+<!-- Events Section -->
 
 <!-- Hero Section -->
 <section id="home" class="hero-section">
@@ -444,44 +443,49 @@
             </div>
         </div>
 
-        <div class="row mb-4" is="dmx-repeat" id="repeat_eventos" dmx-bind:repeat="sc_eventos.data.query_conferencias" key="id">
-
-            <div class="col-lg-12 mb-3" data-aos="fade-up" data-aos-delay="100">
+        <% if (eventos && eventos.query_conferencias && eventos.query_conferencias.length > 0) { %>
+        <div class="row mb-4">
+            <% eventos.query_conferencias.forEach((conferencia, index) => { %>
+            <div class="col-lg-12 mb-3" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
                 <div class="event-card">
                     <div class="row">
                         <div class="col-12 col-lg-7 col-md-12">
-                            <img dmx-bind:src="banner" class="img-fluid">
+                            <img src="<%= conferencia.banner %>" alt="<%= conferencia.titulo %>" class="img-fluid">
                         </div>
                         <div class="event-content col-12 col-lg-5 col-md-12">
-                            <h5 class="text-start">{{titulo}}</h5>
-                            <p class="event-date text-start"><i class="fas fa-calendar-alt me-2"></i>{{data_evento}}</p>
-                            <p class="text-start">{{descricao}}</p>
-                            <p class="event-date text-start">{{local}}</p>
-                            <a class="text-start btn btn-gold-outline cursor-pointer" dmx-bind:href="link" target="_blank">Go to hotsite</a>
+                            <h5 class="text-start"><%= conferencia.titulo %></h5>
+                            <p class="event-date text-start"><i class="fas fa-calendar-alt me-2"></i><%= conferencia.data_evento %></p>
+                            <p class="text-start"><%= conferencia.descricao %></p>
+                            <p class="event-date text-start"><%= conferencia.local %></p>
+                            <a class="text-start btn btn-gold-outline cursor-pointer" href="<%= conferencia.link %>" target="_blank">Ir para hotsite</a>
                         </div>
                     </div>
-
                 </div>
-
             </div>
+            <% }); %>
         </div>
+        <% } %>
 
         <!-- INICIO EVENTOS -->
-        <div class="row g-4" is="dmx-repeat" id="repeat_eventos" dmx-bind:repeat="sc_eventos.data.query_eventos" key="id">
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <% if (eventos && eventos.query_eventos && eventos.query_eventos.length > 0) { %>
+        <div class="row g-4">
+            <% eventos.query_eventos.forEach((evento, index) => { %>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="<%= (index + 1) * 100 %>">
                 <div class="event-card">
                     <div class="event-image">
-                        <img alt="Evento 1" class="img-fluid" dmx-bind:src="banner">
-                        <span class="event-badge">{{tipo}}</span>
+                        <img alt="<%= evento.titulo %>" class="img-fluid" src="<%= evento.banner %>">
+                        <span class="event-badge"><%= evento.tipo %></span>
                     </div>
                     <div class="event-content">
-                        <h5>{{titulo}}</h5>
-                        <p class="event-date"><i class="fas fa-calendar-alt me-2"></i>{{data_evento}}</p>
-                        <a dmx-on:click="browser.goto('/evento?evento_id='+token)" class="btn btn-gold-outline cursor-pointer">Saiba Mais</a>
+                        <h5><%= evento.titulo %></h5>
+                        <p class="event-date"><i class="fas fa-calendar-alt me-2"></i><%= evento.data_evento %></p>
+                        <a href="/evento?evento_id=<%= evento.token %>" class="btn btn-gold-outline cursor-pointer">Saiba Mais</a>
                     </div>
                 </div>
             </div>
+            <% }); %>
         </div>
+        <% } %>
         <!-- FIM EVENTOS -->
     </div>
 </section>

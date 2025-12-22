@@ -1,0 +1,90 @@
+<% if (evento) { %>
+<!-- Hero Section com Banner do Evento -->
+<section class="hero-section" style="background-image: url('<%= evento.banner %>'); background-size: cover; background-position: center; min-height: 60vh; display: flex; align-items: center;">
+</section>
+
+<!-- Detalhes do Evento -->
+<section class="section-padding bg-white">
+    <div class="container-fluid" style="padding-left: 100px; padding-right: 100px;">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div data-aos="fade-up">
+                    <span class="badge bg-warning text-dark mb-3"><%= evento.tipo %></span>
+                    <h2 class="mb-4"><%= evento.titulo %></h2>
+                    <div class="event-description">
+                        <p class="lead" style="white-space: pre-line;"><%= evento.descricao %></p>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="https://community.kenb2b.com/" target="_blank" class="btn btn-gold">
+                            INSCRIÇÃO
+                        </a>
+                        <p class="text-muted small mt-2 mb-0">Para se inscrever entre com sua conta da comunidade ou crie uma</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="event-info-card p-4 rounded text-white" style="background-color: #1a365d;" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="mb-4 text-white">Informações</h4>
+                    
+                    <div class="mb-3">
+                        <p class="mb-1 text-white"><strong><i class="fas fa-calendar-alt me-2" style="color: #a98f75;"></i>Data:</strong></p>
+                        <p class="text-white"><%= evento.data_evento %><% if (evento.data_fim && evento.data_fim !== evento.data_evento) { %> - <%= evento.data_fim %><% } %></p>
+                    </div>
+                    
+                    <% if (evento.horario) { %>
+                    <div class="mb-3">
+                        <p class="mb-1 text-white"><strong><i class="fas fa-clock me-2" style="color: #a98f75;"></i>Horário:</strong></p>
+                        <p class="text-white"><%= evento.horario %></p>
+                    </div>
+                    <% } %>
+                    
+                    <div class="mb-3">
+                        <p class="mb-1 text-white"><strong><i class="fas fa-map-marker-alt me-2" style="color: #a98f75;"></i>Local:</strong></p>
+                        <p class="text-white"><%= evento.local %></p>
+                    </div>
+                    
+                    <% if (evento.online_url) { %>
+                    <div class="mb-3">
+                        <p class="mb-1 text-white"><strong><i class="fas fa-link me-2" style="color: #a98f75;"></i>Link Online:</strong></p>
+                        <p><a href="<%= evento.online_url %>" target="_blank" class="text-warning text-decoration-none"><%= evento.online_url %></a></p>
+                    </div>
+                    <% } %>
+                    
+                    <div class="mb-3">
+                        <p class="mb-1 text-white"><strong><i class="fas fa-tag me-2" style="color: #a98f75;"></i>Preço:</strong></p>
+                        <% if (evento.is_free) { %>
+                        <p class="text-success fw-bold">GRATUITO</p>
+                        <% } else { %>
+                        <p class="text-white fw-bold">R$ <%= evento.price.toFixed(2).replace('.', ',') %></p>
+                        <% } %>
+                    </div>
+                    
+                    <% if (evento.capacity > 0) { %>
+                    <div class="mb-3">
+                        <p class="mb-1 text-white"><strong><i class="fas fa-users me-2" style="color: #a98f75;"></i>Capacidade:</strong></p>
+                        <p class="text-white"><%= evento.capacity %> pessoas</p>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% } else { %>
+<!-- Evento não encontrado -->
+<section class="section-padding bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Evento não encontrado</h2>
+                <p class="mb-4">O evento solicitado não foi encontrado ou não está mais disponível.</p>
+                <a href="/" class="btn btn-gold">
+                    <i class="fas fa-arrow-left me-2"></i>Voltar para a página inicial
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<% } %>

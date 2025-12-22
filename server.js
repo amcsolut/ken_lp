@@ -1,6 +1,8 @@
+require('dotenv').config({ path: '.env.local' });
 const express = require('express');
 const path = require('path');
 const fs = require('fs').promises;
+const eventosService = require('./services/eventosService');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,14 +19,29 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware para CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
 // Função auxiliar para renderizar com layout
 async function renderWithLayout(res, layoutFile, contentFile, data = {}) {
   try {
-    // Ler o conteúdo do arquivo
+    // Renderizar o conteúdo do arquivo com as variáveis
     const contentPath = path.join(__dirname, contentFile);
-    const content = await fs.readFile(contentPath, 'utf8');
+    const ejs = require('ejs');
+    const content = await ejs.renderFile(contentPath, data, {
+      async: false
+    });
     
-    // Renderizar o layout passando o conteúdo
+    // Renderizar o layout passando o conteúdo renderizado
     res.render(layoutFile, {
       ...data,
       content: content
@@ -35,57 +52,61 @@ async function renderWithLayout(res, layoutFile, contentFile, data = {}) {
   }
 }
 
-// Rota para API de eventos (mock data)
-app.get('/api/eventos/listar_eventos_ativos', (req, res) => {
-  // Dados mock para eventos
-  const mockEventos = {
-    query_conferencias: [
-      {
-        id: 1,
-        titulo: "KEN Conference Orlando 2025",
-        data_evento: "2025-03-15",
-        descricao: "Transform Your Mindset - A conference to transform your business mindset",
-        local: "Orlando, FL - USA",
-        banner: "/assets/img/fundoken1.jpg",
-        link: "/orlando2025"
+// Rota para API de eventos (mantida para compatibilidade se necessário)
+app.get('/api/eventos/listar_eventos_ativos', async (req, res) => {
+  try {
+    const eventos = await eventosService.buscarTodosEventos();
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ data: eventos });
+  } catch (error) {
+    console.error('❌ Erro ao buscar eventos:', error);
+    res.json({
+      data: {
+        query_conferencias: [],
+        query_eventos: []
       }
-    ],
-    query_eventos: [
-      {
-        id: 1,
-        titulo: "Workshop de Empreendedorismo",
-        data_evento: "2025-04-20",
-        tipo: "Workshop",
-        banner: "/assets/img/fundoken1.jpg",
-        token: "workshop-001"
-      },
-      {
-        id: 2,
-        titulo: "Networking KEN",
-        data_evento: "2025-05-10",
-        tipo: "Networking",
-        banner: "/assets/img/fundoken1.jpg",
-        token: "networking-001"
-      }
-    ]
-  };
-  
-  res.json({ data: mockEventos });
+    });
+  }
 });
 
 // Rota principal (inglês) - usa Layout_Site-EN.ejs
 app.get('/', async (req, res) => {
-  await renderWithLayout(res, 'Layout_Site-EN', 'index.ejs', {
-    title: 'KEN - Kingdom Enterprise Network'
-  });
+  try {
+    const eventos = await eventosService.buscarTodosEventos();
+    await renderWithLayout(res, 'Layout_Site-EN', 'index.ejs', {
+      title: 'KEN - Kingdom Enterprise Network',
+      eventos: eventos
+    });
+  } catch (error) {
+    console.error('Erro ao renderizar página principal:', error);
+    await renderWithLayout(res, 'Layout_Site-EN', 'index.ejs', {
+      title: 'KEN - Kingdom Enterprise Network',
+      eventos: {
+        query_conferencias: [],
+        query_eventos: []
+      }
+    });
+  }
 });
 
 // Rota para versão em português - renderiza diretamente (já é uma página completa)
-app.get('/pt-br', (req, res) => {
-  // pt-br.ejs é uma página completa, não precisa de layout
-  res.render('pt-br', {
-    title: 'KEN - Kingdom Enterprise Network'
-  });
+app.get('/pt-br', async (req, res) => {
+  try {
+    const eventos = await eventosService.buscarTodosEventos();
+    res.render('pt-br', {
+      title: 'KEN - Kingdom Enterprise Network',
+      eventos: eventos
+    });
+  } catch (error) {
+    console.error('Erro ao renderizar página pt-br:', error);
+    res.render('pt-br', {
+      title: 'KEN - Kingdom Enterprise Network',
+      eventos: {
+        query_conferencias: [],
+        query_eventos: []
+      }
+    });
+  }
 });
 
 // Rota para orlando2025 - usa layout_hotsite.ejs
@@ -151,20 +172,56 @@ app.get('/cadastro_igrejas', (req, res) => {
   `);
 });
 
-// Rota para evento individual (placeholder)
-app.get('/evento', (req, res) => {
-  const eventoId = req.query.evento_id;
-  res.send(`
-    <html>
-      <head><title>Evento - KEN</title></head>
-      <body>
-        <h1>Detalhes do Evento</h1>
-        <p>ID do Evento: ${eventoId || 'N/A'}</p>
-        <p>Esta página será implementada em breve.</p>
-        <a href="/">Voltar</a>
-      </body>
-    </html>
-  `);
+// Rota para evento individual
+app.get('/evento', async (req, res) => {
+  try {
+    const eventoId = req.query.evento_id;
+    
+    if (!eventoId) {
+      return res.status(400).send(`
+        <html>
+          <head><title>Erro - KEN</title></head>
+          <body>
+            <h1>ID do evento não fornecido</h1>
+            <p>Por favor, forneça um ID de evento válido.</p>
+            <a href="/">Voltar para a página inicial</a>
+          </body>
+        </html>
+      `);
+    }
+
+    const evento = await eventosService.buscarEventoPorId(eventoId);
+    
+    if (!evento) {
+      return res.status(404).send(`
+        <html>
+          <head><title>Evento não encontrado - KEN</title></head>
+          <body>
+            <h1>Evento não encontrado</h1>
+            <p>O evento solicitado não foi encontrado.</p>
+            <a href="/">Voltar para a página inicial</a>
+          </body>
+        </html>
+      `);
+    }
+
+    await renderWithLayout(res, 'Layout_Site-EN', 'evento.ejs', {
+      title: `${evento.titulo} - KEN`,
+      evento: evento
+    });
+  } catch (error) {
+    console.error('Erro ao renderizar página de evento:', error);
+    res.status(500).send(`
+      <html>
+        <head><title>Erro - KEN</title></head>
+        <body>
+          <h1>Erro ao carregar evento</h1>
+          <p>Ocorreu um erro ao carregar os dados do evento.</p>
+          <a href="/">Voltar para a página inicial</a>
+        </body>
+      </html>
+    `);
+  }
 });
 
 // Middleware para servir dmxAppConnect (se necessário)
