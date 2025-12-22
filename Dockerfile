@@ -26,16 +26,17 @@ RUN addgroup -g 1001 -S nodejs && \
 # Switch to non-root user
 USER nodejs
 
-# Expose port (pode ser sobrescrito pela variável PORT)
-EXPOSE 3000
+# Expose port (será sobrescrito pela variável PORT do Easypanel)
+# O Easypanel mapeia a porta externa para a porta interna via variável PORT
+EXPOSE 80
 
 # Set environment to production
 ENV NODE_ENV=production
 
 # Health check usando endpoint /health
-# Usa a porta da variável PORT ou 80 como fallback (já que o servidor está na 80)
+# Usa wget para verificar se o servidor está respondendo
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1
+  CMD wget --quiet --tries=1 --spider --timeout=5 http://localhost:80/health || exit 1
 
 # Start the application
 CMD ["node", "server.js"]

@@ -21,6 +21,17 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname));
 
+// Rota de health check (ANTES de qualquer middleware para garantir que funciona)
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    port: PORT,
+    nodeEnv: process.env.NODE_ENV,
+    uptime: process.uptime()
+  });
+});
+
 // Servir arquivos estáticos (CSS, JS, imagens)
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
@@ -255,21 +266,6 @@ app.use((req, res) => {
       </body>
     </html>
   `);
-});
-
-// Rota de health check simples (antes de outras rotas para garantir que funciona)
-app.get('/health', (req, res) => {
-  try {
-    res.status(200).json({ 
-      status: 'ok', 
-      timestamp: new Date().toISOString(),
-      port: PORT,
-      nodeEnv: process.env.NODE_ENV
-    });
-  } catch (error) {
-    console.error('Erro no health check:', error);
-    res.status(500).json({ status: 'error', message: error.message });
-  }
 });
 
 // Iniciar servidor
