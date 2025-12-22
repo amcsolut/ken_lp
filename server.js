@@ -34,6 +34,12 @@ app.use((req, res, next) => {
   }
 });
 
+// Middleware de tratamento de erros global
+app.use((err, req, res, next) => {
+  console.error('Erro não tratado:', err);
+  res.status(500).send('Erro interno do servidor');
+});
+
 // Função auxiliar para renderizar com layout
 async function renderWithLayout(res, layoutFile, contentFile, data = {}) {
   try {
@@ -245,9 +251,13 @@ app.use((req, res) => {
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
-  console.log(`📄 Página principal: http://localhost:${PORT}/`);
-  console.log(`🇧🇷 Versão PT-BR: http://localhost:${PORT}/pt-br`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Servidor rodando em http://0.0.0.0:${PORT}`);
+  console.log(`📄 Página principal: http://0.0.0.0:${PORT}/`);
+  console.log(`🇧🇷 Versão PT-BR: http://0.0.0.0:${PORT}/pt-br`);
+  console.log(`🌍 Acessível externamente na porta ${PORT}`);
+}).on('error', (err) => {
+  console.error('❌ Erro ao iniciar servidor:', err);
+  process.exit(1);
 });
 
