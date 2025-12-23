@@ -58,3 +58,4 @@ O `EXPOSE` no Dockerfile é apenas documentação. O que importa é:
 - A variável `PORT` configurada no Easypanel
 - O mapeamento de porta no Easypanel (Container Port → Host Port)
 
+
